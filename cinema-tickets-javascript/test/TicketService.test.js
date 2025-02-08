@@ -94,4 +94,17 @@ describe('TicketService', () => {
       expect(result.totalSeats).toBe(3);
     });
   });
+
+  describe('calculateTotalAmount', () => {
+    it('should calculate correct total amount for different ticket combinations', () => {
+      const ticketCounts = {
+        ADULT: 2,
+        CHILD: 3,
+        INFANT: 1
+      };
+
+      const total = ticketService.calculateTotalAmount(ticketCounts);
+      expect(total).toBe(95); // (2 * £25) + (3 * £15) + (1 * £0)
+    });
+  });
 }); 
