@@ -107,4 +107,17 @@ describe('TicketService', () => {
       expect(total).toBe(95); // (2 * £25) + (3 * £15) + (1 * £0)
     });
   });
+
+  describe('calculateTotalSeats', () => {
+    it('should calculate correct number of seats needed (excluding infants)', () => {
+      const ticketCounts = {
+        ADULT: 2,
+        CHILD: 3,
+        INFANT: 1
+      };
+
+      const seats = ticketService.calculateTotalSeats(ticketCounts);
+      expect(seats).toBe(5); // 2 adults + 3 children (infant doesn't need a seat)
+    });
+  });
 }); 
